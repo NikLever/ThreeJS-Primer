@@ -1,7 +1,8 @@
-import * as THREE from '../../libs/three128/three.module.js';
-import { GLTFLoader } from '../../libs/three128/GLTFLoader.js';
-import { RGBELoader } from '../../libs/three128/RGBELoader.js';
-import { OrbitControls } from '../../libs/three128/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from '../../libs/three140/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '../../libs/three140/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from '../../libs/three140/examples/jsm/loaders/DRACOLoader.js';
+import { RGBELoader } from '../../libs/three140/examples/jsm/loaders/RGBELoader.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
 class App{
@@ -10,7 +11,7 @@ class App{
 		document.body.appendChild( container );
         
 		this.camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
-		this.camera.position.set( 0, 0, 5 );
+		this.camera.position.set( 0, 0.05, 0.22 );
         
 		this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color( 0xaaaaaa );
@@ -35,12 +36,14 @@ class App{
         this.loadGLTF();
         
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
-        
+        this.controls.target.y = 0.04;
+        this.controls.update();
+
         window.addEventListener('resize', this.resize.bind(this) );
 	}	
     
     setEnvironment(){
-        const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
+        const loader = new RGBELoader();
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         pmremGenerator.compileEquirectangularShader();
         
@@ -58,18 +61,21 @@ class App{
     }
     
     loadGLTF(){
-        const loader = new GLTFLoader( ).setPath('../../assets/plane/');
-        
+        const loader = new GLTFLoader( ).setPath('../../assets/');
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath( '../../libs/three140/examples/js/libs/draco/' );
+        loader.setDRACOLoader( dracoLoader );
+
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'microplane.glb',
+			'motorcycle.glb',
 			// called when the resource is loaded
 			gltf => {
                 const bbox = new THREE.Box3().setFromObject( gltf.scene );
                 console.log(`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`);
                 
-                this.plane = gltf.scene;
+                this.motorcycle = gltf.scene;
                 
 				this.scene.add( gltf.scene );
                 
@@ -86,7 +92,7 @@ class App{
 			// called when loading has errors
 			err => {
 
-				console.error( err );
+				console.error( err.message );
 
 			}  
         );
@@ -99,7 +105,7 @@ class App{
     }
     
 	render( ) {   
-        this.plane.rotateY( 0.01 );
+        this.motorcycle.rotateY( 0.01 );
         this.renderer.render( this.scene, this.camera );
     }
 }

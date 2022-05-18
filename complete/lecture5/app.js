@@ -1,5 +1,5 @@
-import * as THREE from '../../libs/three134/three.module.js';
-import { OrbitControls } from '../../libs/three134/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from '../../libs/three140/examples/jsm/controls/OrbitControls.js';
 
 class App{
 	constructor(){
@@ -24,7 +24,7 @@ class App{
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
 		container.appendChild( this.renderer.domElement );
 		
-        const geometry = new THREE.BoxBufferGeometry();
+        const geometry = new THREE.BoxGeometry();
         const material = new THREE.MeshStandardMaterial( { color: 0xFF0000 });
 
         this.mesh = new THREE.Mesh( geometry, material );
