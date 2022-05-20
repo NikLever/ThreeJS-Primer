@@ -1,2 +1,2 @@
 # ThreeJS-Primer
-Resources from my FREE course
+Resources from my FREE Three.JS course

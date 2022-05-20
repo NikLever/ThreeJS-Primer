@@ -1,7 +1,7 @@
-import * as THREE from '../../libs/three126/three.module.js';
-import { GLTFLoader } from '../../libs/three126/GLTFLoader.js';
-import { RGBELoader } from '../../libs/three126/RGBELoader.js';
-import { OrbitControls } from '../../libs/three126/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from '../../libs/three140/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '../../libs/three140/examples/jsm/loaders/GLTFLoader.js';
+import { RGBELoader } from '../../libs/three140/examples/jsm/loaders//RGBELoader.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
 class App{
@@ -37,20 +37,18 @@ class App{
 	}	
     
     setEnvironment(){
-        const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
+        const loader = new RGBELoader();
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         pmremGenerator.compileEquirectangularShader();
-        
-        const self = this;
-        
+         
         loader.load( '../../assets/hdr/venice_sunset_1k.hdr', ( texture ) => {
           const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
           pmremGenerator.dispose();
 
-          self.scene.environment = envMap;
+          this.scene.environment = envMap;
 
         }, undefined, (err)=>{
-            console.error( 'An error occurred setting the environment');
+            console.error( `An error occurred setting the environment ${err.message}`);
         } );
     }
     
