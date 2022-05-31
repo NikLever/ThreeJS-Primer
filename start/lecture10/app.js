@@ -50,13 +50,11 @@ class App{
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         pmremGenerator.compileEquirectangularShader();
         
-        const self = this;
-        
         loader.load( '../../assets/hdr/venice_sunset_1k.hdr', ( texture ) => {
           const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
           pmremGenerator.dispose();
 
-          self.scene.environment = envMap;
+          this.scene.environment = envMap;
 
         }, undefined, (err)=>{
             console.error( 'An error occurred setting the environment');
@@ -83,7 +81,7 @@ class App{
                     if (child.isMesh && child.name == 'Cube') child.visible = false;
                 });
                 
-                //Add code here
+                //Add animation code here
 
 				this.scene.add( gltf.scene );
                 
@@ -119,7 +117,7 @@ class App{
 	render( ) {   
         const dt = this.clock.getDelta();
        
-        
+
         this.renderer.render( this.scene, this.camera );
     }
 }
