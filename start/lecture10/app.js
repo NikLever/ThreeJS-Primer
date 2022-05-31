@@ -81,7 +81,7 @@ class App{
                     if (child.isMesh && child.name == 'Cube') child.visible = false;
                 });
                 
-                //Add animation code here
+                //1. Add animation code here
 
 				this.scene.add( gltf.scene );
                 
@@ -105,7 +105,7 @@ class App{
     }
 
     set action(name){
-		
+		//2. TO DO
 	}
     
     resize(){
@@ -116,7 +116,7 @@ class App{
     
 	render( ) {   
         const dt = this.clock.getDelta();
-       
+        //3. Add mixer update
 
         this.renderer.render( this.scene, this.camera );
     }
