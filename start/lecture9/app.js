@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from '../../libs/three140/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from '../../libs/three140/examples/jsm/loaders/GLTFLoader.js';
-import { RGBELoader } from '../../libs/three140/examples/jsm/loaders//RGBELoader.js';
+import { DRACOLoader } from '../../libs/three140/examples/jsm/loaders/DRACOLoader.js';
+import { RGBELoader } from '../../libs/three140/examples/jsm/loaders/RGBELoader.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
 class App{
@@ -63,7 +64,7 @@ class App{
     }
     
 	render( ) {   
-        this.plane.rotateY( 0.01 );
+        if (this.motorcycle) this.motorcycle.rotateY( 0.01 );
         this.renderer.render( this.scene, this.camera );
     }
 }
