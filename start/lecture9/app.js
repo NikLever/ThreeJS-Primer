@@ -11,7 +11,7 @@ class App{
 		document.body.appendChild( container );
         
 		this.camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
-		this.camera.position.set( 0, 0, 5 );
+		this.camera.position.set( 0, 0.05, 0.22 );
         
 		this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color( 0xaaaaaa );
@@ -33,6 +33,8 @@ class App{
         //Add code here to code-along with the video
 
         this.controls = new OrbitControls( this.camera, this.renderer.domElement );
+        this.controls.target.y = 0.04;
+        this.controls.update();
         
         window.addEventListener('resize', this.resize.bind(this) );
 	}	
