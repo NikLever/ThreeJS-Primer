@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { OrbitControls } from '../../libs/three140/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from '../../libs/three140/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from '../../libs/three140/examples/jsm/loaders/DRACOLoader.js';
-import { RGBELoader } from '../../libs/three140/examples/jsm/loaders/RGBELoader.js';
+import { OrbitControls } from '../../libs/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '../../libs/three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from '../../libs/three/examples/jsm/loaders/DRACOLoader.js';
+import { RGBELoader } from '../../libs/three/examples/jsm/loaders/RGBELoader.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 
 class App{
@@ -19,7 +19,7 @@ class App{
 		const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 0.5);
 		this.scene.add(ambient);
         
-        const light = new THREE.DirectionalLight( 0xFFFFFF, 1.5 );
+        const light = new THREE.DirectionalLight( 0xFFFFFF, 4 );
         light.position.set( 0.2, 1, 1);
         this.scene.add(light);
 			
