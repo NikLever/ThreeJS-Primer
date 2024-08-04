@@ -12,9 +12,6 @@ class App{
 		this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color( 0xaaaaaa );
 
-		const ambient = new THREE.HemisphereLight( 0xFFFFFF, 0xBBBBFF, 0.3);
-		this.scene.add( ambient );
-
 		//TO DO: Add Light code here
 			
 		this.renderer = new THREE.WebGLRenderer({ antialias: true } );
@@ -31,9 +28,7 @@ class App{
 	}	
     
     resize(){
-		this.camera.aspect = window.innerWidth / window.innerHeight;
-		this.camera.updateProjectionMatrix();
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		//TO DO: Add resize code
     }
     
 	render( ) {  
