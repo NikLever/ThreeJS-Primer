@@ -23,17 +23,11 @@ class App{
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
 		container.appendChild( this.renderer.domElement );
-		       
         this.renderer.setAnimationLoop(this.render.bind(this));
 
-		const geometry = new THREE.BoxGeometry();
-		const material = new THREE.MeshStandardMaterial( { color: 0xFF0000 });
-
-		this.mesh = new THREE.Mesh( geometry, material );
+		//TO DO: Add code here
 
 		const controls = new OrbitControls( this.camera, this.renderer.domElement );
-
-		this.scene.add( this.mesh );
     
         window.addEventListener('resize', this.resize.bind(this) );
 	}	
@@ -45,7 +39,6 @@ class App{
     }
     
 	render( ) {  
-		this.mesh.rotateX( 0.01 ); 
 		this.renderer.render( this.scene, this.camera );
     }
 }

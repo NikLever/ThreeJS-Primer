@@ -26,9 +26,7 @@ class App{
 		
         const geometry = new THREE.BoxGeometry();
         const material = new THREE.MeshStandardMaterial( { color: 0xFF0000 });
-
-        this.mesh = new THREE.Mesh( geometry, material );
-        
+        this.mesh = new THREE.Mesh( geometry, material ); 
         this.scene.add(this.mesh);
         
         const controls = new OrbitControls( this.camera, this.renderer.domElement );
